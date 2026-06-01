@@ -17,6 +17,13 @@ local Base = require("game.base")
 local Menus = require("game.menus")
 local Minigames = require("game.minigames")
 local Scrap = require("game.scrap")
+local Chappy = require("game.chappy")
+
+-- Self-contained games that drive their own state (not the Base): { module, over-check }.
+local SPECIAL = {
+    scrap  = { mod = Scrap,  over = function() return Scrap.is_dead() end },
+    chappy = { mod = Chappy, over = function() return Chappy.is_over() end },
+}
 
 local _shot = { want = false, t = 0 }
 local paused = false
@@ -37,7 +44,7 @@ local function overlay(name)
 end
 
 local function enter_game(key)
-    if key == "scrap" then Scrap.enter(); return end -- scrap runs its own round system
+    if SPECIAL[key] then SPECIAL[key].mod.enter(); return end -- self-contained games
     for _, mg in ipairs(Minigames) do
         if mg.key == key then Base.load(mg.map, mg.npcs, { hostile = mg.hostile }) end
     end
@@ -84,19 +91,20 @@ end
 local function register_games()
     for _, mg in ipairs(Minigames) do
         local game = mg
-        if game.key == "scrap" then
-            -- scrap: wave rounds + winner/death screens (game.scrap drives Base)
-            GameState.register("scrap", {
-                update = function(dt) if not paused then Scrap.update(dt) end end,
+        local sp = SPECIAL[game.key]
+        if sp then
+            -- self-contained game module (scrap rounds, chappy runner, ...)
+            GameState.register(game.key, {
+                update = function(dt) if not paused then sp.mod.update(dt) end end,
                 draw = function()
-                    Scrap.draw()
-                    if not Scrap.is_dead() then overlay(game.name) end
+                    sp.mod.draw()
+                    if not sp.over() then overlay(game.name) end
                     if paused then draw_pause_overlay() end
                 end,
                 keypressed = function(k)
                     if paused then
                         Menu.keypressed(k)
-                    elseif Scrap.is_dead() then
+                    elseif sp.over() then
                         if k == "return" or k == "space" then to_main_menu() end
                     elseif k == "escape" or k == "p" then
                         pause_game()
@@ -139,7 +147,7 @@ function love.load()
         if a == "shot" then _shot.want = true
         elseif a == "grid" then wantGrid = true
         elseif a == "pause" then wantPause = true
-        elseif a == "win" or a == "dead" then wantPhase = a
+        elseif a == "win" or a == "dead" or a == "run" then wantPhase = a
         else
             for _, mg in ipairs(Minigames) do
                 if a == mg.key then jumpTo = mg.key end
@@ -150,8 +158,12 @@ function love.load()
     if jumpTo then
         play(jumpTo) -- straight into a game (dev)
         if wantPause then pause_game() end
-        if wantPhase and jumpTo == "scrap" then
-            Scrap.dev(wantPhase, wantPhase == "win" and 3 or 5, wantPhase == "win" and 2 or 4)
+        if wantPhase then
+            if jumpTo == "scrap" and (wantPhase == "win" or wantPhase == "dead") then
+                Scrap.dev(wantPhase, wantPhase == "win" and 3 or 5, wantPhase == "win" and 2 or 4)
+            elseif jumpTo == "chappy" and wantPhase == "run" then
+                Chappy.dev("running")
+            end
         end
     else
         open_main_menu()
