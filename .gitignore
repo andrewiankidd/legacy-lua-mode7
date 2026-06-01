@@ -1,1 +1,7 @@
-*_dist
+node_modules/
+love/
+*.love
+Web/
+*.dll
+*.exe
+*_dist/

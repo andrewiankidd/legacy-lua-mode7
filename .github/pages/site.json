@@ -1,0 +1,39 @@
+﻿{
+  "title": "Mode 7",
+  "title_html": "<mark>Mode</mark> 7",
+  "description": "A retro-style scanline perspective-rendering experiment built with Lua and LOVE2D, circa 2011.",
+  "description_html": "A retro-style scanline perspective-rendering experiment built with Lua and <a href=\"https://love2d.org\">LOVE2D</a> circa 2011. Pseudo-3D floor rendering with rotation and scaling.",
+  "repo": "andrewiankidd/legacy-lua-mode7",
+  "source": "https://github.com/andrewiankidd/legacy-lua-mode7",
+  "theme": {
+    "background": "#0a0a1a",
+    "foreground": "rgba(10, 10, 26, 0.75)",
+    "highlight": "#e90",
+    "text": "#d0d0e0",
+    "muted": "#6a6a8a",
+    "card": "#14142a",
+    "border": "#2a2a4a",
+    "wave-start": "#e90",
+    "wave-end": "#0a0a1a"
+  },
+  "downloads": [
+    {
+      "label": "Play in Browser",
+      "href": "Web/index.html",
+      "primary": true,
+      "icon": "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"
+    },
+    {
+      "label": ".love File",
+      "release_file": "Mode7-love.zip",
+      "icon": "M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"
+    }
+  ],
+  "features": [
+    "<strong>Mode 7 rendering</strong> &mdash; retro-style perspective transformation on a 2D plane",
+    "<strong>Rotation &amp; scaling</strong> &mdash; real-time camera rotation and zoom",
+    "<strong>Tile-based maps</strong> &mdash; renders texture-mapped floor from a tile grid",
+    "<strong>Animation system</strong> &mdash; sprite animation framework",
+    "<strong>Web build</strong> &mdash; plays in the browser via love.js (WASM)"
+  ]
+}
