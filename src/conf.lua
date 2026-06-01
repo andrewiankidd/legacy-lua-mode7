@@ -1,4 +1,4 @@
-﻿-- Dev override: set LOVE2D4ME_DEV=C:\git\love2d4me to use a local
+-- Dev override: set LOVE2D4ME_DEV=C:\git\love2d4me to use a local
 -- working copy instead of the embedded submodule. No push needed.
 local dev = os.getenv("LOVE2D4ME_DEV")
 if dev then

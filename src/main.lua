@@ -1,4 +1,4 @@
-﻿-- WEE GAMES â€” a bootleg multi-cart of wee street games, all on the Mode 7 base.
+-- WEE GAMES -- a bootleg multi-cart of wee street games, all on the Mode 7 base.
 -- Boots into a standard main menu; Start opens the "5-in-1" grid; each game
 -- loads its own copy of the map.
 --

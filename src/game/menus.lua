@@ -1,4 +1,4 @@
-﻿-- menus.lua â€” the game's menu definitions, built with the framework Menu module.
+-- menus.lua -- the game's menu definitions, built with the framework Menu module.
 -- Main menu (standard look: logo/title/options/quit) â†’ Start pushes the grid
 -- (the extended `layout = "grid"` view) â†’ selecting a game launches it.
 
@@ -10,7 +10,7 @@ local Menus = {}
 
 local function font(name) return _G[name] or love.graphics.getFont() end
 
--- Settings submenu (vertical â€” the framework's default layout).
+-- Settings submenu (vertical -- the framework's default layout).
 function Menus.options()
     local vol = math.floor(love.audio.getVolume() * 100 + 0.5)
     local fs = love.window.getFullscreen()

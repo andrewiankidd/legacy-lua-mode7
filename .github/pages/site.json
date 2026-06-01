@@ -1,4 +1,4 @@
-﻿{
+{
   "title": "Mode 7",
   "title_html": "<mark>Mode</mark> 7",
   "description": "A retro-style scanline perspective-rendering experiment built with Lua and LOVE2D, circa 2011.",

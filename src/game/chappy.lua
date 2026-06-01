@@ -5,7 +5,7 @@
 local Chappy = {}
 
 local SPRITE = 50
-local DRAW_SCALE = 3
+local DRAW_SCALE = 1.5
 local EAST = { 13, 18 } -- protag east-facing run frames
 
 -- tuning (screen space)
@@ -87,7 +87,7 @@ function Chappy.draw()
         love.graphics.setColor(1, 1, 1, 1)
         love.graphics.printf("CHAP THE DOOR", 0, sh * 0.43, sw, "center")
         love.graphics.setFont(font("pixelfont"))
-        love.graphics.printf("press SPACE, then leg it!", 0, sh * 0.52, sw, "center")
+        love.graphics.printf("press SPACE", 0, sh * 0.52, sw, "center")
     elseif phase == "running" then
         love.graphics.setFont(font("pixelfont"))
         love.graphics.setColor(1, 1, 1, 0.9)

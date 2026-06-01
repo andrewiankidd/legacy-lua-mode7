@@ -1,4 +1,4 @@
-﻿-- base.lua â€” the shared "guy on a Mode 7 map" gameplay base. Every minigame loads
+-- base.lua -- the shared "guy on a Mode 7 map" gameplay base. Every minigame loads
 -- its own map through this; the mechanics get layered on per game later.
 
 local Love2D4Me = require("love2d4me")

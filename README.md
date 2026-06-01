@@ -1,4 +1,4 @@
-﻿# legacy-lua-mode7
+# legacy-lua-mode7
 ##### _Mode 7_
 
 ![logo](assets/logo.png)
