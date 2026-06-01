@@ -21,4 +21,4 @@ jobs:
     with:
       project_name: "Mode 7"
       love_filename: "game"
-      branch: "web-port"
+      branch: "master"
