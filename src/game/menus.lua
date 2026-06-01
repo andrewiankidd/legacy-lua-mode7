@@ -22,8 +22,8 @@ function Menus.options()
         entries = {
             { label = "Volume: " .. vol .. "%", action = function()
                 local volume = love.audio.getVolume()
-                v = (v >= 0.95) and 0 or math.min(v + 0.25, 1)
-                love.audio.setVolume(volume); Settings.set("volume", v)
+                volume = (volume >= 0.95) and 0 or math.min(volume + 0.25, 1)
+                love.audio.setVolume(volume); Settings.set("volume", volume)
                 Menu.pop(); Menu.push(Menus.options())
             end },
             { label = "Fullscreen: " .. (fs and "On" or "Off"), action = function()
