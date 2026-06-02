@@ -18,11 +18,13 @@ local Menus = require("game.menus")
 local Minigames = require("game.minigames")
 local Scrap = require("game.scrap")
 local Chappy = require("game.chappy")
+local Kerby = require("game.kerby")
 
 -- Self-contained games that drive their own state (not the Base): { module, over-check }.
 local SPECIAL = {
     scrap  = { mod = Scrap,  over = function() return Scrap.is_dead() end },
     chappy = { mod = Chappy, over = function() return Chappy.is_over() end },
+    kerby  = { mod = Kerby,  over = function() return Kerby.is_over() end },
 }
 
 local _shot = { want = false, t = 0 }

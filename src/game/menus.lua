@@ -1,6 +1,6 @@
 -- menus.lua -- the game's menu definitions, built with the framework Menu module.
--- Main menu (standard look: logo/title/options/quit) â†’ Start pushes the grid
--- (the extended `layout = "grid"` view) â†’ selecting a game launches it.
+-- Main menu (standard look: logo/title/options/quit) -> Start pushes the grid
+-- (the extended `layout = "grid"` view) -> selecting a game launches it.
 
 local Menu = require("love2d4me.src.menu")
 local Settings = require("love2d4me.src.settings")
