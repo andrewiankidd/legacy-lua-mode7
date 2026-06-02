@@ -43,9 +43,9 @@ local function fence_hit()
     local tilepos = (scroll + playerX + SPRITE * DRAW_SCALE * 0.5) % BG_W
     for _, f in ipairs(FENCE_FRACS) do
         local fx = f * BG_W
-        local d = math.abs(tilepos - fx)
-        d = math.min(d, BG_W - d)
-        if d < FENCE_HALF and py > groundY - FENCE_CLEAR then
+        local gap = math.abs(tilepos - fx)
+        gap = math.min(gap, BG_W - gap)
+        if gap < FENCE_HALF and py > groundY - FENCE_CLEAR then
             return true
         end
     end
@@ -62,8 +62,8 @@ function Chappy.update(dt)
         if py >= groundY then py = groundY; vy = 0; jumping = false end
     end
     anim:update(dt)
-    local f = anim:getCurrentFrame()
-    if f < EAST[1] or f > EAST[2] then anim:seek(EAST[1]) end
+    local frame = anim:getCurrentFrame()
+    if frame < EAST[1] or frame > EAST[2] then anim:seek(EAST[1]) end
     if fence_hit() then phase = "tripped" end
 end
 

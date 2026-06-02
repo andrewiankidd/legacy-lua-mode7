@@ -59,8 +59,8 @@ local function project(wx, wy)
     local sw, sh = love.graphics.getDimensions()
     local screen_y = (wy / tex_h) * sh
     local depth_ratio = wy / tex_h
-    local t = math.max(0, (wy - VANISHING_Y) / (COURT_BOTTOM - VANISHING_Y))
-    local perspective_wx = ROAD_CENTER_X + (wx - ROAD_CENTER_X) * t
+    local perspective_ratio = math.max(0, (wy - VANISHING_Y) / (COURT_BOTTOM - VANISHING_Y))
+    local perspective_wx = ROAD_CENTER_X + (wx - ROAD_CENTER_X) * perspective_ratio
     local screen_x = (perspective_wx / tex_w) * sw
     return screen_x, screen_y, depth_ratio
 end

@@ -144,9 +144,9 @@ function Base.spawn_enemies(count)
 end
 
 function Base.enemies_alive()
-    local n = 0
-    for _, e in ipairs(npcs) do if e.alive then n = n + 1 end end
-    return n
+    local count = 0
+    for _, e in ipairs(npcs) do if e.alive then count = count + 1 end end
+    return count
 end
 
 function Base.player_dead()
