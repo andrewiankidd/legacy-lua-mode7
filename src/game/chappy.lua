@@ -2,6 +2,8 @@
 -- a looping tenement street, jumping the garden fences. Obstacles deferred.
 -- Self-contained (not on the Mode 7 base): flat side view, looping background.
 
+local Input = require("love2d4me.src.input")
+
 local Chappy = {}
 
 local SPRITE = 50
@@ -53,7 +55,14 @@ local function fence_hit()
 end
 
 function Chappy.update(dt)
+    if phase == "atdoor" then
+        if Input.pressed("confirm") then phase = "running" end
+        return
+    end
     if phase ~= "running" then return end
+    if (Input.pressed("confirm") or Input.pressed("move_up")) and not jumping then
+        jumping = true; vy = JUMP_V
+    end
     scroll = scroll + RUN_SPEED * dt
     distance = distance + RUN_SPEED * dt
     if jumping then
@@ -87,13 +96,13 @@ function Chappy.draw()
         love.graphics.setColor(1, 1, 1, 1)
         love.graphics.printf("CHAP THE DOOR", 0, sh * 0.43, sw, "center")
         love.graphics.setFont(font("pixelfont"))
-        love.graphics.printf("press SPACE", 0, sh * 0.52, sw, "center")
+        love.graphics.printf("press A to start", 0, sh * 0.52, sw, "center")
     elseif phase == "running" then
         love.graphics.setFont(font("pixelfont"))
         love.graphics.setColor(1, 1, 1, 0.9)
         love.graphics.print(math.floor(distance / 20) .. "m", 16, 12)
         love.graphics.setColor(1, 1, 1, 0.6)
-        love.graphics.print("SPACE: jump", 16, 30)
+        love.graphics.print("A: jump", 16, 30)
     elseif phase == "tripped" then
         love.graphics.setColor(0, 0, 0, 0.65)
         love.graphics.rectangle("fill", 0, 0, sw, sh)
@@ -104,19 +113,12 @@ function Chappy.draw()
         love.graphics.printf("SCORE: " .. math.floor(distance / 20) .. "m", 0, sh * 0.45, sw, "center")
         love.graphics.setFont(font("pixelfont"))
         love.graphics.setColor(1, 1, 1, 0.7)
-        love.graphics.printf("press SPACE", 0, sh * 0.58, sw, "center")
+        love.graphics.printf("press A to retry", 0, sh * 0.58, sw, "center")
     end
     love.graphics.setColor(1, 1, 1, 1)
 end
 
 function Chappy.keypressed(k)
-    if phase == "atdoor" then
-        if k == "space" or k == "return" then phase = "running" end
-    elseif phase == "running" then
-        if (k == "space" or k == "up" or k == "w") and not jumping then
-            jumping = true; vy = JUMP_V
-        end
-    end
 end
 
 function Chappy.is_over() return phase == "tripped" end
