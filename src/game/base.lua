@@ -94,7 +94,6 @@ function Base.load(map_name, npc_count, opts)
 
     combat_active = opts.hostile or false
     if combat_active then
-        Input.bind("attack", { keys = {"f", "space"} })
         Equipment.register("fist", { damage = 8, range = 80, cooldown = 0.5, type = "melee" })
         Equipment.equip("fist")
         player.hp = 100
