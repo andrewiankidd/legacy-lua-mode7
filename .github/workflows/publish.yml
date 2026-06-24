@@ -20,5 +20,5 @@ jobs:
     uses: andrewiankidd/love2d4me/.github/workflows/love2d-ci.yml@master
     with:
       project_name: "Mode 7"
-      love_filename: "game"
+      love_filename: "mode7"
       branch: "master"

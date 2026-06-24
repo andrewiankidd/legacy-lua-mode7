@@ -1,6 +1,6 @@
 {
   "name": "mode7",
-  "lovefile": "game",
+  "lovefile": "mode7",
   "version": "1.0.0",
   "private": true,
   "description": "Mode 7 rendering experiment built with Lua and LOVE2D",
